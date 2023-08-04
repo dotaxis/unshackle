@@ -29,20 +29,20 @@ while true; do
   CHOICE="$(whiptail --nocancel --title "unshackle | use arrow keys" --menu \
     "
   Select Your OS: $args" $whiptail_height $whiptail_width 8 \
-    '1' 'windows' \
-    '2' 'linux' \
-    '3' 'Exit' 3>&1 1>&2 2>&3)"
+    '1' 'inject' \
+    '2' 'restore' \
+    '3' 'exit' 3>&1 1>&2 2>&3)"
   case "$CHOICE" in
     1)
       clear
-      /usr/bin/unshackle --windows
+      /usr/bin/unshackle --inject
       sleep 2
       enter_to_quit
       /usr/bin/unshackle_menu
       ;;
     2)
       clear
-      /usr/bin/unshackle --linux
+      /usr/bin/unshackle --restore
       sleep 2
       enter_to_quit
       /usr/bin/unshackle_menu
