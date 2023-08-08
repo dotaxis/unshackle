@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Load functions and variables
 . /usr/bin/common
-unshackle_VERSION="1.0"
+unshackle_VERSION="1.1"
 
 export NEWT_COLORS='root=,black
 border=white,black
