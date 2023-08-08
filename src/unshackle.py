@@ -10,7 +10,7 @@ def check_for_ntoskrnl(partition):
 
 def inject_sethc(partition):
     sethc_path = os.path.join(partition, 'Windows', 'System32', 'sethc.exe')
-    new_sethc_path = "/usr/sbin/sethc.exe"
+    new_sethc_path = os.path.join(partition, 'Windows', 'System32', 'cmd.exe')
     if not os.path.exists(sethc_path):
         print("Original sethc.exe not found. Aborting.")
         return False
