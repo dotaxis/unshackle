@@ -1,48 +1,21 @@
+## Unshackle - Password Bypass Tool
+Unshackle is an open-source tool to replace sticky keys with an elevated command prompt for the purpose of bypassing Windows login.
 
-### Unshackle - Password Bypass Tool
-<p align="center">
-<a href="#"><img src="https://media.discordapp.net/attachments/1124408428333367367/1135886585594920960/download.png" height="200"></a>
-</p>
-Unshackle is an open-source tool to bypass Windows and Linux user passwords from a bootable USB based on Linux. (Linux bypass is still under development)
+<br>
 
-Contributions are welcomed.
-
-To-Do List:
-
-| Feature         | Status |
-|-----------------|------------|
-| Easy to use | ✅
-| Support windows | ✅
-| Simple CLI | ✅
-| Support linux  | 🟡
-| Tutorial video  | 🟡
-| easy to build  | ❌
-| Simple GUI  | ❌
-
-✅ = Done
-🟡 = Under development
-❌ = Planned  
-
-## Requirements
-
-To use Unshackle, you need:
-
-1. Unshackle ISO
-2. Rufus
-3. USB pen drive
-
-## Usage
-
-1. Download the Unshackle ISO from the [releases](https://github.com/Fadi002/unshackle/releases/).
+### Usage (Windows only)
+1. Download the Unshackle ISO from the [releases](https://github.com/dotaxis/unshackle/releases/).
 2. Download [Rufus](https://rufus.ie/en/) (recommended).
 3. Use Rufus to burn the ISO to your USB drive.
 4. Boot from the USB and select Unshackle.
-5. Choose your OS (Windows or Linux).
+5. Choose either 'inject' or 'restore'.
 6. Let the process finish, then reboot your system.
-7. For Windows, press Shift five times on the lock screen.
+7. Press Shift five times on the lock screen.
 
-## Donation 💸
-if you liked the project feel free to donate!
+<br>
+
+### Donation 💸
+If you liked the project feel free to donate to the original creator
 
 BNB : 0xAF0445f3eEDd7f113a47D3a339820F5b4B1F700c
 
@@ -52,10 +25,14 @@ ETH : 0xAF0445f3eEDd7f113a47D3a339820F5b4B1F700c
 
 LTC : ltc1qcu8z2wuexn4lq9em4taerkxcxca267lyg8xac8
 
-## Disclaimer
+<br>
 
+### Disclaimer
 This tool is for educational purposes only. Do not use it for any illegal activities or unauthorized access. Use it at your own risk. We are not liable for any damage caused by its use.
 
-## License
+<br>
 
+### License
 The program, libraries, etc., are licensed under the GNU General Public License.
+
+<br>
